@@ -1,0 +1,128 @@
+@client.command()
+@commands.has_permissions( administrator = True)
+
+async def mute(ctx, member: discord.Member = None, amount_time = None, *, reason = None):
+    if member is None:
+        await ctx.send(embed = discord.Embed(
+            title = f'{ctx.author.name}, **укажите пользователя**',
+            description = f'r/mute **@пользователь** время(s/m/h/d) причина\n\nПример: r/mute @Jivet_H 120m флуд'
+        ))
+    elif amount_time is None:
+        await ctx.send(embed = discord.Embed(
+            title = f'{ctx.author.name}, **укажите кол-во времени**',
+            description = f'r/mute @пользователь **время(s/m/h/d)** причина\n\nПример: r/mute @Jivet_H 120m флуд'
+        ))
+    elif reason is None:
+        await ctx.send(embed = discord.Embed(
+            title = f'{ctx.author.name}, **укажите причину**',
+            description = f'r/mute @пользователь время(s/m/h/d) **причина**\n\nПример: r/mute @Jivet_H 120m флуд'
+        ))
+    else:
+        if 'm' in amount_time:
+            embed = discord.Embed(description = f'''**МУТ**\n\nУчастник: **{member.name}**.\nВремя: **{amount_time} m**.\nВыдал: **{ctx.author}**
+                ```css
+Причина: {reason}
+                ```
+                ''',
+                color = 0x36393E,)
+ 
+            mute_role = discord.utils.get(ctx.guild.roles, name = "Mute")
+            channel =  discord.utils.get(member.guild.channels, name = "журнал-аудита")
+            await channel.send(embed = embed)
+            await member.send(embed = embed)
+            await member.add_roles(mute_role)
+            await asyncio.sleep(int(amount_time))
+            await member.remove_roles(mute_role)
+ 
+            embed = discord.Embed(
+                description = f'''**МУТ СНЯТ**\n\nУчастник: **{member.name}**.
+              ```css
+Причина мута: {reason}
+              ```
+              ''',
+                color = 0x2F3136
+            )
+            channel =  discord.utils.get(member.guild.channels, name = "журнал-аудита")
+            await channel.send(embed = embed)
+            await member.send(embed = embed)
+        elif 'h' in amount_time:
+            embed = discord.Embed(description = f'''**МУТ**\n\nУчастник: **{member.name}**.\nВремя: **{amount_time} h**.\nВыдал: **{ctx.author}**
+                ```css
+Причина: {reason}
+                ```
+                ''',
+                color = 0x36393E,)
+ 
+            mute_role = discord.utils.get(ctx.guild.roles, name = "Mute")
+            channel =  discord.utils.get(member.guild.channels, name = "журнал-аудита")
+            await channel.send(embed = embed)
+            await member.send(embed = embed)
+            await member.add_roles(mute_role)
+            await asyncio.sleep(int(amount_time))
+            await member.remove_roles(mute_role)
+ 
+            embed = discord.Embed(
+                description = f'''**МУТ СНЯТ**\n\nУчастник: **{member.name}**.
+              ```css
+Причина мута: {reason}
+              ```
+              ''',
+                color = 0x2F3136
+            )
+            channel =  discord.utils.get(member.guild.channels, name = "журнал-аудита")
+            await channel.send(embed = embed)
+            await member.send(embed = embed)
+        elif 'd' in amount_time:
+            embed = discord.Embed(description = f'''**МУТ**\n\nУчастник: **{member.name}**.\nВремя: **{amount_time} d**.\nВыдал: **{ctx.author}**
+                ```css
+Причина: {reason}
+                ```
+                ''',
+                color = 0x36393E,)
+ 
+            mute_role = discord.utils.get(ctx.guild.roles, name = "Mute")
+            channel =  discord.utils.get(member.guild.channels, name = "журнал-аудита")
+            await channel.send(embed = embed)
+            await member.send(embed = embed)
+            await member.add_roles(mute_role)
+            await asyncio.sleep(int(amount_time))
+            await member.remove_roles(mute_role)
+ 
+            embed = discord.Embed(
+                description = f'''**МУТ СНЯТ**\n\nУчастник: **{member.name}**.
+              ```css
+Причина мута: {reason}
+              ```
+              ''',
+                color = 0x2F3136
+            )
+            channel =  discord.utils.get(member.guild.channels, name = "журнал-аудита")
+            await channel.send(embed = embed)
+            await member.send(embed = embed)
+        else:
+            embed = discord.Embed(description = f'''**МУТ**\n\nУчастник: **{member.name}**.\nВремя: **{amount_time} s**.\nВыдал: **{ctx.author}**
+                ```css
+Причина: {reason}
+                ```
+                ''',
+                color = 0x36393E,)
+ 
+            mute_role = discord.utils.get(ctx.guild.roles, name = "Mute")
+            channel =  discord.utils.get(member.guild.channels, name = "журнал-аудита")
+            await channel.send(embed = embed)
+            await member.send(embed = embed)
+            await member.add_roles(mute_role)
+            await asyncio.sleep(int(amount_time))
+            await member.remove_roles(mute_role)
+ 
+            embed = discord.Embed(
+                description = f'''**МУТ СНЯТ**\n\nУчастник: **{member.name}**.
+              ```css
+Причина мута: {reason}
+              ```
+              ''',
+                color = 0x2F3136
+            )
+            channel =  discord.utils.get(member.guild.channels, name = "журнал-аудита")
+            await channel.send(embed = embed)
+            await member.send(embed = embed)
